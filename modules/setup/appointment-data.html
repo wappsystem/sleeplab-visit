@@ -1,0 +1,142 @@
+<section>
+    VmInclude:__COMPONENT__/module/grid.v1.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/module/grid.v1.js
+        //-------------------------------------
+        var fields="_Copy,First_Name,Last_Name,Email,Location,Physician,Appointment_Type,Date,Appointment_Time,_Login_ID,Password,_Send_Email,_Results,_Summary";/*_Patient_Info*/
+        m.fields="_Form,"+fields+",Submit Date|DateTime,Submitted by|Author,_Delete";
+        m.form_fields=fields+",List,TID"
+        //-------------------------------------
+		var this_module			=$vm.module_list[$vm.vm['__ID'].name];
+        var prefix              =this_module.prefix;  if(prefix==undefined) prefix="";
+        var prefix2             =this_module.prefix2; if(prefix2==undefined) prefix2="";
+        var db_pid              =this_module.table_id;
+        var physician_tid		=this_module.physician_tid;
+		var appointment_type_tid=this_module.appointment_type_tid;
+		var form_module			=this_module.form_module;
+		//-------------------------------------
+        var initial_pid_list=[
+            "20011608","20011602","20011601",
+    		"20011610","20011609","20011607",
+    		"20011606","20011605","20011604",
+    		"20011603"
+        ];
+		var fu_pid_list=[
+            "20011593","20011592","20011591",
+            "20011590","20011589"
+        ];
+        //-------------------------------------
+		$('#new__ID').off('click').on('click',function(){$vm.nav_load_module(prefix+form_module,'',{goback:1})})
+        //-------------------------------------
+        m.before_submit=function(record,dbv){
+            if(record.Appointment_Type=='Follow up'){
+                record.List=fu_pid_list.toString(); //based on some logic, select first or second or...
+            }
+            else{
+    			record.List=initial_pid_list.toString(); //based on some logic, select first or second or...
+            }
+            dbv.S1=record.Email;
+			dbv.S3=record.Password;
+			dbv.DT1=record.Date;
+            return true;
+        };
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td,set_value,source){
+            switch(field){
+                case 'Location':
+                    var html="<select style='border:0;'>\
+                    <option>MLC</option><option>Bondi Junction</option>\
+                    </select>\
+                    ";
+                    VmInclude:__COMPONENT__/grid/field_select.js
+                    break;
+                case 'Physician':
+                    var sql="with tb as (select distinct name=S1,value2=uid from [TABLE-"+physician_tid+"])";
+            		sql+=" select top 10 name,value=name,value2 from tb where Name like '%'+@S1+'%' ";
+            		$vm.autocomplete(td,sql);
+	                break;
+				case 'Appointment_Type':
+                    var sql="with tb as (select distinct name=S1,value2=uid from [TABLE-"+appointment_type_tid+"])";
+                    sql+=" select top 10 name,value=name,value2 from tb where Name like '%'+@S1+'%' ";
+                    $vm.autocomplete(td,sql);
+                    if (records[I].Appointment_Type=="Follow up") m.set_value(fu_pid_list.toString(),records,I,"List");
+                    else m.set_value(initial_pid_list.toString(),records,I,"List")
+                    break;
+				case 'Date':
+                    var html='<input type=date style="border:none" />';
+                    $vm.render_input_field(records[I],'__ID',td,html);
+	                break;
+                case 'Appointment_Time':
+                    var html='<input type=time style="border:none" />';
+                    $vm.render_input_field(records[I],'__ID',td,html);
+	                break;
+				case '_Login_ID':
+					records[I].vm_custom[field]=true;
+					if(records[I].UID!=undefined) td.text(records[I].UID+'-'+db_pid);
+					break;
+				case '_Send_Email':
+					records[I].vm_custom[field]=true;
+					if(records[I].UID===undefined) return;
+					td.html("<u style='cursor:pointer'>Send Email</u>");
+					td.find('u').on('click',function(){
+                        var email_module_id=prefix+prefix2+"email-001";
+                        if(records[I].Appointment_Type=="Follow up") email_module_id=prefix+prefix2+"email-002";
+                        $vm.nav_load_module(email_module_id,$vm.root_layout_content_slot,{record:records[I]});
+					});
+					break;
+				case '_Results':
+                    records[I].vm_custom[field]=true;
+                    if(records[I].UID===undefined) return;
+                    td.html("<u style='cursor:pointer'>Results</u>");
+                    td.find('u').on('click',function(){
+                        records[I].PID=m.db_pid;
+                        var panel="panel-initial";
+                        if(records[I].Appointment_Type=="Follow up") panel="panel-fu";
+                        $vm.load_module_v2(panel,$vm.root_layout_content_slot,{record:records[I]});
+                    });
+                    break;
+                case '_Summary':
+					records[I].vm_custom[field]=true;
+					if(records[I].UID===undefined) return;
+					td.html("<u style='cursor:pointer'>Summary</u>");
+					td.find('u').on('click',function(){
+                        var summary="report-initial-appointment-summary";
+                        if(records[I].Appointment_Type=="Follow up") summary="report-follow-up-appointment-summary";
+                        $vm.nav_load_module(summary,$vm.root_layout_content_slot,{record:records[I]});
+					});
+					break;
+                case '_Patient_Info':
+					records[I].vm_custom[field]=true;
+					if(records[I].UID===undefined) return;
+					td.html("<u style='cursor:pointer'>Patient Info</u>");
+					td.find('u').on('click',function(){
+                        $vm.nav_load_module(prefix+prefix2+"patient-info",$vm.root_layout_content_slot,{record:records[I]});
+					});
+					break;
+                case '_Copy':
+					if(records[I].UID===undefined) return;
+                    td.removeAttr('contenteditable');
+                    td.css('background-color','#F8F8F8');
+					td.html("<u style='cursor:pointer'><i class='fa fa-clone'></i></u>");
+					td.find('u').on('click',function(){
+                        $vm.load_module_v2(prefix+form_module,'',{record:records[I],clone:1});
+					});
+					break;
+            }
+        }
+        //-------------------------------------
+        //convert the existed date to the new standard format
+        m.data_process=function(){
+            for(var i=0;i<m.records.length;i++){
+                m.records[i].Date=$vm.au_date_to_string_yyyymmdd(m.records[i].Date);
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/grid/grid.v3.css
+</style>

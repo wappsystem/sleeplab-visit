@@ -1,0 +1,96 @@
+{
+	"modules":
+	{
+		"questionnaire-setup":  {"url":"https://wappsystem.github.io/woolcock-clinic/modules/frame/setup.html"},
+		"reports":    			{"url":"https://wappsystem.github.io/woolcock-clinic/modules/frame/report.html"},
+		"panel-initial": 		{"url":"https://wappsystem.github.io/woolcock-clinic/modules/frame/initial.html"},
+		"panel-fu": 			{"url":"https://wappsystem.github.io/woolcock-clinic/modules/frame/follow-up.html"},
+
+		"online-questionnaire-initial": {"url":"https://wappsystem.github.io/woolcock-clinic/modules/online-questionnaire/frame/initial.html"},
+		"online-questionnaire-fu":     {"url":"https://wappsystem.github.io/woolcock-clinic/modules/online-questionnaire/frame/follow-up.html"},
+
+		"contact-details":		{"table_id":"20011601","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/contact-details.html"},
+		"medicare-referrals":	{"table_id":"20011610","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/medicare-referrals.html"},
+        "sleep-history":		{"table_id":"20011602","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/sleep-history.html"},
+		"health-history":		{"table_id":"20011608","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/health-history.html"},
+		"ess":					{"table_id":"20011609","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/ess.html"},
+		"dass":					{"table_id":"20011607","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/dass.html"},
+		"isi":					{"table_id":"20011606","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/isi.html"},
+		"psqi":					{"table_id":"20011605","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/psqi.html"},
+		"phq":					{"table_id":"20011604","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/phq.html"},
+		"fss":					{"table_id":"20011603","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/fss.html"},
+		"ess-fu":				{"table_id":"20011593","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/ess.html"},
+		"dass-fu":				{"table_id":"20011592","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/dass.html"},
+		"isi-fu":				{"table_id":"20011591","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/isi.html"},
+		"phq-fu":				{"table_id":"20011590","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/phq.html"},
+		"fss-fu":				{"table_id":"20011589","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/fss.html"},
+
+		"permissions":                          {                      "url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/panel.html"},
+        "permission-check":                     {"table_id":"20011594","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/check.html"},
+        "permission-role-login-data":           {"table_id":"20011594","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/role-login-data.html","form_module":"permission-role-login-form"},
+        "permission-role-login-form":           {"table_id":"20011594","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/role-login-form.html"},
+        "permission-role-table-group-data":     {"table_id":"20011595","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/role-table-group-data.html","form_module":"permission-role-table-group-form"},
+        "permission-role-table-group-form":     {"table_id":"20011595","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/role-table-group-form.html"},
+    	"permission-query-data":                {"table_id":"20011596","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/query-data.html","form_module":"permission-query-form"},
+        "permission-query-form":                {"table_id":"20011596","url":"https://wappsystem.github.io/woolcock-clinic/modules/permissions/query-form.html"},
+
+
+		"appointment-data":  	{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/appointment-data.html","physician_tid":"20011599","appointment_type_tid":"20011598","name_for_search":"Appointment Data","form_module":"appointment-form"},
+		"appointment-form":  	{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/appointment-form.html","physician_tid":"20011599","appointment_type_tid":"20011598","name_for_search":"Appointment Form"},
+		"physician":      		{"table_id":"20011599","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/physician.html","name_for_search":"Physician"},
+		"appointment-type": 	{"table_id":"20011598","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/appointment-type.html","name_for_search":"Appointment Type"},
+		"email-001":      		{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/email-001.html","name_for_search":""},
+		"email-002":      		{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/email-002.html","name_for_search":""},
+		"patient-info":   		{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/patient-info.html","name_for_search":""},
+		"report":         		{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/report.html","name_for_search":""},
+		"email-setup":      	{"table_id":"20011597","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/email-setup.html"},
+
+		"report-daily-first":   {"url":"https://wappsystem.github.io/woolcock-clinic/modules/isleephealth/task/report-daily-first.html","table_id":"20011195","name_for_search":""},
+
+		"report-initial-appointment-summary":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-initial-appointment-summary.html"},
+		"report-initial-appointment-check":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-initial-appointment-check.html"},
+		"report-initial-appointment-patient-info":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-initial-appointment-patient-info.html"},
+		"report-appointment-patient-list":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-appointment-patient-list.html"},
+		"report-follow-up-appointment-summary":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-follow-up-appointment-summary.html"},
+		"report-follow-up-appointment-check":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-follow-up-appointment-check.html"},
+		"report-appointment-day-list":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-appointment-day-list.html"},
+
+        "sleep-history-report":		    {"table_id":"20011602","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/sleep-history-report.html"},
+		"health-history-report":		{"table_id":"20011608","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/health-history-report.html"},
+		"ess-report":					{"table_id":"20011609","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/ess-report.html"},
+		"dass-report":					{"table_id":"20011607","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/dass-report.html"},
+		"isi-report":					{"table_id":"20011606","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/isi-report.html"},
+		"phq-report":					{"table_id":"20011604","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/phq-report.html"},
+		"fss-report":					{"table_id":"20011603","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/fss-report.html"},
+		"ess-fu-report":				{"table_id":"20011593","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/ess-report.html"},
+		"dass-fu-report":				{"table_id":"20011592","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/dass-report.html"},
+		"isi-fu-report":				{"table_id":"20011591","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/isi-report.html"},
+		"phq-fu-report":				{"table_id":"20011590","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/phq-report.html"},
+		"fss-fu-report":				{"table_id":"20011589","url":"https://wappsystem.github.io/woolcock-clinic/modules/tasks/fss-report.html"}
+	},
+	"dictionary":
+		{
+        "contact-details":{
+            "Name":"Name",
+            "Sex":"Sex",
+            "DOB":"Date of birth",
+            "Residential_Address":"Residential Address",
+            "Suburb":"Suburb",
+            "Contact_number":"Phone",
+            "Contact_email":"Email",
+            "Emergency_contact":"Emergency Contact",
+            "Emergency_contact_number":"Emergency Contact Phone"
+        },
+        "medicare-referrals":{
+            "Medicare_number":"Medicare number",
+            "Medicare_reference_number":"Ref",
+            "Medicare_expiry":"Expiry Date",
+            "Residential_Address":"Residential Address",
+            "Referring_doctor":"Referring Doctor",
+            "Referring_doctor_address":"Address",
+            "GP_Family_doctor":"GP/Family Doctor",
+            "GP_Family_doctor_address":"Address",
+            "DVA":"DVA"
+        }
+    }
+}
