@@ -45,8 +45,6 @@
 		"report":         		{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/report.html","name_for_search":""},
 		"email-setup":      	{"table_id":"20011597","url":"https://wappsystem.github.io/woolcock-clinic/modules/setup/email-setup.html"},
 
-		"report-daily-first":   {"url":"https://wappsystem.github.io/woolcock-clinic/modules/isleephealth/task/report-daily-first.html","table_id":"20011195","name_for_search":""},
-
 		"report-initial-appointment-summary":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-initial-appointment-summary.html"},
 		"report-initial-appointment-check":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-initial-appointment-check.html"},
 		"report-initial-appointment-patient-info":{"table_id":"20011600","url":"https://wappsystem.github.io/woolcock-clinic/modules/reports/report-initial-appointment-patient-info.html"},
