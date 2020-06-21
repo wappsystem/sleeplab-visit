@@ -1,0 +1,133 @@
+<div id=D__ID>
+	<!--third html start -->
+	<div class="container mt-95 mb-3">
+		<div class="row">
+			<!-- form container start -->
+			<div class="col-12 col-lg-12 col-md-12 col-sm-12 mx-auto formbox">
+				<div class="row">
+					<div class="col-12">
+						<!-- form start -->
+						<form id="F__ID">
+							<h3>Appointment Type</h3>
+							<div class="form-group ">
+								<div class="questiongroup ">
+									<fieldset class="subquestions">
+										<div class="row">
+											<div class="col-lg-12 col-sm-12">
+												<div><label><span class="">Appointment Type</span></label></div>
+												<div class="input-group-sm ">
+													<input type="text" class="form-control input-sm" name=Appointment_Type />
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="form-group ">
+								<div class="questiongroup ">
+									<fieldset class="subquestions">
+										<div class="row">
+											<div class="col-lg-12 col-sm-12">
+												<div><label><span class="">Questionnaire for appointment</span></label></div>
+												<div class="input-group-sm ">
+													<input type="text" class="form-control" name=questionnaires placeholder="lookup..." />
+													<label><span><u style='cursor:pointer;margin-bottom:3px;display:inline-block' id=item_a_add__ID><i class="fa fa-plus"></i> Add to list</u></span></label>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="form-group ">
+								<div class="questiongroup ">
+									<fieldset class="subquestions">
+										<div class="row">
+											<div class="col-lg-12 col-sm-12">
+												<div class="input-group-sm ">
+													<label><span>
+														<table id=grid_item_a__ID></table>
+													</span></label>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="form-group ">
+								<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
+								<button id=delete__ID type="button" class="btn btn-primary btn-lg">Delete</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+    	function F__ID(){
+    		//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			VmInclude: __COMPONENT__/f/form-item-a.01.js
+			//-------------------------------------
+            old_load=m.load;
+			m.load=function(){
+				old_load();
+				//-------item a part
+				if (m.input.record != undefined) {
+					if (m.input.record.Data.items == undefined) m.input.record.Data.items = [];
+					m.item_a_records = m.input.record.Data.items;
+					m.item_a_render();
+				}
+			}
+			//-------------------------------------			
+			//item a part
+			m.item_a_fields = "Questionnaire,_Remove";
+			//----------------------------------
+			$('#item_a_add__ID').on('click', function () { m.item_a_render(); $('input[name=questionnaires').val(""); })
+			//----------------------------------
+			m.item_a_cell_render = function (records, I, field, td, set_value, source) {
+				switch (field) {
+				}
+			}
+			//----------------------------------
+			m.item_a_after_change = function (records, I, field, td, set_value, source) {
+				switch (field) {
+				}
+			}
+			//----------------------------------
+			m.item_a_after_remove = function () {
+			}
+			//-------------------------------------
+			var autocomplete_req = { cmd: "find", field: '.Data.Questionnaire', table: m.lookup, options: {}, skip: 0, limit: 10 }
+			var autocomplete_callback = function (item) {
+				$('input[name=questionnaires').val(item.label);
+				console.log(item.label)
+				var ttt = {}
+				ttt.Questionnaire = item.label;
+				console.log(ttt)
+				m.item_a_records.push(ttt)
+			}
+			var autocomplete_list = function (records) {
+				var items = [];
+				for (var i = 0; i < records.length; i++) {
+					var obj = {};
+					obj.label = records[i].Data["Questionnaire"];
+					items.push(obj);
+				}
+				return items;
+			}
+			var wait5 = function () {
+				$vm.autocomplete($('#F__ID input[name=questionnaires'), autocomplete_req, autocomplete_list, autocomplete_callback);
+			}
+			var I5 = 0; var loop_5 = setInterval(function () {
+				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_5); wait5(); }
+				I5++; if (I5 > 50) { clearInterval(loop_5); alert("jquery-ui.min.js is not installed."); }
+			}, 100);
+
+    	}
+    </script>
+    <style>
+		VmInclude:__CURRENT_PATH__/wappsystem-form.css
+		VmInclude:__COMPONENT__/f/form-item-a.01.css
+    </style>
+</div>
