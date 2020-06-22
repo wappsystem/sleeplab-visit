@@ -70,14 +70,14 @@
 											<div class="col-lg-6 col-sm-12">
 												<div><label><span class="">Appointment Type</span></label></div>
 												<div class="input-group-sm ">
-													<input type="text" class="form-control input-sm" name=appointment_type
+													<input type="text" class="form-control input-sm" name=Appointment_Type
 														placeholder="lookup..." />
 												</div>
 											</div>
 											<div class="col-lg-6 col-sm-12">
 												<div><label><span class="">Physician</span></label></div>
 												<div class="input-group-sm">
-													<input type="text" class="form-control input-sm" name=physician
+													<input type="text" class="form-control input-sm" name=Physician
 														placeholder="lookup..." />
 												</div>
 											</div>
@@ -92,13 +92,13 @@
 											<div class="col-lg-6 col-sm-12">
 												<div><label><span class="">Login ID</span></label></div>
 												<div class="input-group-sm ">
-													<input type="text" class="form-control" name=First_Name required placeholder="Login ID" readonly />
+													<input type="text" class="form-control" id=record__ID readonly />
 												</div>
 											</div>
 											<div class="col-lg-6 col-sm-12">
 												<div><label><span class="">Password</span></label></div>
 												<div class="input-group-sm">
-													<input type="text" class="form-control" name=Last_Name required placeholder="Password" />
+													<input type="text" class="form-control" name=_Password required placeholder="Password" />
 												</div>
 											</div>
 										</div>
@@ -120,10 +120,17 @@
 		//-------------------------------------
 		VmInclude: __COMPONENT__/f/form.01.js
 		//-------------------------------------
-		old_load = m.load;
+		var load = m.load;
 		m.load = function () {
-			old_load();
-			//-------
+			load();
+			if (m.input.record == undefined) {
+				$('.row_participant__ID').hide()
+				$('#F__ID input[name=_Password').val($vm.vm_password(8, false));
+			}
+			else {
+				$('.row_participant__ID').show()
+				$('#record__ID').val(m.input.record.UID)
+			}
 		}
 		//-------------------------------------
 		m.before_submit = function (data, index) {
@@ -133,7 +140,7 @@
 		//-------------------------------------
 		var autocomplete_req = { cmd: "find", field: '.Data.Name', table: m.lookup, options: {}, skip: 0, limit: 10 }
 		var autocomplete_callback = function (item) {
-			$('input[name=physician').val(item.Name);
+			$('input[name=Physician').val(item.Name);
 		}
 		var autocomplete_list = function (records) {
 			var items = [];
@@ -146,7 +153,7 @@
 			return items;
 		}
 		var wait1 = function () {
-			$vm.autocomplete($('#F__ID input[name=physician'), autocomplete_req, autocomplete_list, autocomplete_callback);
+			$vm.autocomplete($('#F__ID input[name=Physician'), autocomplete_req, autocomplete_list, autocomplete_callback);
 		}
 		var I = 0; var loop_1 = setInterval(function () {
 			if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }
@@ -155,7 +162,7 @@
 		//-------------------------------------
 		var autocomplete_req2 = { cmd: "find", field: '.Data.Appointment_Type', table: m.lookup2, options: {}, skip: 0, limit: 10 }
 		var autocomplete_callback2 = function (item) {
-			$('input[name=appointment_type').val(item.label);
+			$('input[name=Appointment_Type').val(item.label);
 		}
 		var autocomplete_list2 = function (records) {
 			var items = [];
@@ -167,7 +174,7 @@
 			return items;
 		}
 		var wait2 = function () {
-			$vm.autocomplete($('#F__ID input[name=appointment_type'), autocomplete_req2, autocomplete_list2, autocomplete_callback2);
+			$vm.autocomplete($('#F__ID input[name=Appointment_Type'), autocomplete_req2, autocomplete_list2, autocomplete_callback2);
 		}
 		var I2 = 0; var loop_2 = setInterval(function () {
 			if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_2); wait2(); }
