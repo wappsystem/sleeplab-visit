@@ -81,7 +81,7 @@
 			}
 			//-------------------------------------			
 			//item a part
-			m.item_a_fields = "Questionnaire,_Remove";
+			m.item_a_fields = "Questionnaire,Module_link,_Remove";
 			//----------------------------------
 			$('#item_a_add__ID').on('click', function () { m.item_a_render(); $('input[name=questionnaires').val(""); })
 			//----------------------------------
@@ -101,9 +101,10 @@
 			var autocomplete_req = { cmd: "find", field: '.Data.Questionnaire', table: m.lookup, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback = function (item) {
 				$('input[name=questionnaires').val(item.label);
-				console.log(item.label)
+				console.log(JSON.stringify(item))
 				var ttt = {}
 				ttt.Questionnaire = item.label;
+				ttt.Module_link = item.Module_link;
 				console.log(ttt)
 				m.item_a_records.push(ttt)
 			}
@@ -112,6 +113,7 @@
 				for (var i = 0; i < records.length; i++) {
 					var obj = {};
 					obj.label = records[i].Data["Questionnaire"];
+					obj.Module_link = records[i].Data["Module_link"];
 					items.push(obj);
 				}
 				return items;
