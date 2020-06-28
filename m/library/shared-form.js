@@ -1,11 +1,11 @@
 //-------------------------------------
-var participant_name=function(record){ if(record.Data.Subject_Initials!=undefined) return record.Data.Subject_ID+' '+record.Data.Subject_Initials; else return record.UID;}
+var participant_name=function(record){ if(record.Data.Email!=undefined) return record.Data.Email; else return record.UID;}
 //-------------------------------------
 //auto select particpant
-var part_id1=$vm.module_list['participant-data'].participant_id.field1;
-var part_id2=$vm.module_list['participant-data'].participant_id.field2;
-var part_id3=$vm.module_list['participant-data'].participant_id.field3;
-var autocomplete_req_p={cmd:"find",table:$vm.module_list['participant-data'].Table,options:{},skip:0,limit:10}
+var part_id1=$vm.module_list['appointment-data'].participant_id.field1;
+var part_id2=$vm.module_list['appointment-data'].participant_id.field2;
+var part_id3=$vm.module_list['appointment-data'].participant_id.field3;
+var autocomplete_req_p={cmd:"find",table:$vm.module_list['appointment-data'].Table,options:{},skip:0,limit:10}
 var autocomplete_callback_p=function(items){ $("#F__ID input[name=Participant_uid]").val(items["UID"]);}
 var autocomplete_list_p=function(records){
     var items=[];
@@ -67,7 +67,7 @@ m.load=function(){
     if(m.load_2!=undefined) m.load_2();
 }
 //-------------------------------------
-m.before_submit=function(data){
+m.before_submit=function(data,index){
     if ($("#F__ID input[name=Participant]").val()=='' || $("#F__ID input[name=Participant_uid]").val()==''){
         $vm.alert("Please select a participant. Make sure Participant ID has a number.") 
         return false;    
@@ -75,6 +75,8 @@ m.before_submit=function(data){
     if($("#F__ID input[name=_status]:checked").val()=='' || $("#F__ID input[name=_status]:checked").val()==undefined)
         data.sysStatus=status_of_data(data);
     else data.sysStatus=$("#F__ID input[name=_status]:checked").val()
+    index.I3=data.Participant_uid;
+    index.I4=data.Participant;
 }
 //-------------------------------------
 var status_of_data=function(data){

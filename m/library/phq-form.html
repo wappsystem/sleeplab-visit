@@ -311,7 +311,7 @@
           var before_submit=m.before_submit;
           m.before_submit=function(data,index){
             data.PHQ=(parseInt(data.PHQ_1)+parseInt(data.PHQ_2)+parseInt(data.PHQ_3)+parseInt(data.PHQ_4)+parseInt(data.PHQ_5)+parseInt(data.PHQ_6)+parseInt(data.PHQ_7)+parseInt(data.PHQ_8)+parseInt(data.PHQ_9)).toString();
-            return before_submit(data,index);;
+            return before_submit(data,index);
           }
           //-------------------------------------
       }

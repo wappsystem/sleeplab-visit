@@ -1,7 +1,7 @@
 (function () {
     //-------------------------------------------------------------------------------------
     var modules = {
-        "appointment-data": { url: "$H/m/appointment-data.html", Table: "demo-wapp-appointment", form_module: "appointment-form" },
+        "appointment-data": { url: "$H/m/appointment-data.html", Table: "demo-wapp-appointment", form_module: "appointment-form", participant_id:{field1:"Date",field2:"Email"} },
         "appointment-form": { url: "$H/m/appointment-form.html", Table: "demo-wapp-appointment",lookup:"demo-wapp-local-physician",lookup2:"demo-wapp-appointment-type" },
         "calendar-appointment-week": { url: "$H/m/calendar-appointment-week.html", Table: "demo-wapp-appointment" },
         "calendar-appointment-month": { url: "$H/m/calendar-appointment-month.html", Table: "demo-wapp-appointment" },
@@ -22,9 +22,14 @@
         "hads-form": { url: "$H/m/library/hads-form.html", Table: "demo-wapp-hads", task_name:"HADS" },
         "contact-details-data": { url: "$H/m/library/contact-details-data.html", Table: "demo-wapp-contact-details", form_module: "contact-details-form", task_name:"Contact Details" },
         "contact-details-form": { url: "$H/m/library/contact-details-form.html", Table: "demo-wapp-contact-details", task_name:"Contact Details" },
+        "send-email":   {url:"$H/m/send-email-form.html",   Table:"demo-wapp-appointment", task_name:"Send Email"},
+        "online-questionnaire": {url:"$H/online-questionnaire/index.html"},
+        "q-panel": {url:"$H/m/q-panel.html"},
+        "summary-print": { url: "$H/m/summary-print.html", Table: "demo-wapp-appointment" },
     }
     for (p in modules) {
         $vm.module_list[p] = modules[p];
+        $vm.hosting_path=$vm.hosting_path.replace('online-questionnaire','')
         $vm.module_list[p].url = $vm.module_list[p].url.replace('$H', $vm.hosting_path);
     }
     //-------------------------------------------------------------------------------------

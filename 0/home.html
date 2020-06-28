@@ -6,9 +6,10 @@
 				<h2>Sleeplab Visit Application</h2>
 				<p>
 					<br><br>
-					<a id=get1_in__ID class='btn btn-warning mt-1' style='color:#000' >Daily Visits</a>
-					<a id=get2_in__ID class='btn btn-warning mt-1' style='color:#000' >Weekly Visits</a>
-					<a id=get3_in__ID class='btn btn-warning mt-1' style='color:#000' >Monthy Visits</a>
+					<a id=get1_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Daily Visits</a>
+					<a id=get2_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Weekly Visits</a>
+					<a id=get3_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Monthy Visits</a>
+					<a id=get4_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >All Visits</a>
 				</p>
 				<br>
 			</div>
@@ -37,6 +38,9 @@
 		})
 		$('#get3_in__ID').on('click',function(){
 			$vm.load_module('calendar-visit-month','',{})
+		})
+		$('#get4_in__ID').on('click',function(){
+			$vm.load_module('appointment-data','',{})
 		})
 		$('#scroll_down__ID').on('click',function(e){
 			e.preventDefault();

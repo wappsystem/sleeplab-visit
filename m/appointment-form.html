@@ -71,7 +71,7 @@
 												<div><label><span class="">Appointment Type</span></label></div>
 												<div class="input-group-sm ">
 													<input type="text" class="form-control input-sm" name=Appointment_Type
-														placeholder="lookup..." />
+													id=appointment__ID	placeholder="lookup..." />
 												</div>
 											</div>
 											<div class="col-lg-6 col-sm-12">
@@ -106,6 +106,20 @@
 								</div>
 							</div>
 							<div class="form-group ">
+								<div class="questiongroup ">
+									<fieldset class="subquestions">
+										<div class="row">
+											<div class="col-lg-12 col-sm-12">
+												<div><label><span class="">Questionnaire List</span></label></div>
+												<div class="input-group-sm ">
+													<textarea class="form-control input-sm" name=List ></textarea>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+							<div class="form-group ">
 								<button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
 								<button id=delete__ID type="button" class="btn btn-primary btn-lg">Delete</button>
 							</div>
@@ -132,6 +146,24 @@
 				$('#record__ID').val(m.input.record.UID)
 			}
 		}
+		//-------------------------------------
+		var make_questionnaire_list=function(appointment){
+			var req={ cmd: "find", query:{"Data.Appointment_Type":appointment}, table: m.lookup2, options: {}, skip: 0, limit: 10 }
+			$vm.request(req,function(res){
+				if (res.result.length==1){
+					var list=""
+					for(var i=0;i<res.result[0].Data.items.length;i++){
+						if(i>0){
+							list+=","+res.result[0].Data.items[i].Module_link;
+						}
+						else{
+							list=res.result[0].Data.items[i].Module_link;
+						}
+					}
+					$('#F__ID textarea[name=List]').val(list);
+				}
+			});
+		};
 		//-------------------------------------
 		m.before_submit = function (data, index) {
 			index.I1 = data.Date;
@@ -163,6 +195,7 @@
 		var autocomplete_req2 = { cmd: "find", field: '.Data.Appointment_Type', table: m.lookup2, options: {}, skip: 0, limit: 10 }
 		var autocomplete_callback2 = function (item) {
 			$('input[name=Appointment_Type').val(item.label);
+			make_questionnaire_list(item.label)
 		}
 		var autocomplete_list2 = function (records) {
 			var items = [];
