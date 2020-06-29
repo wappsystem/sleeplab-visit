@@ -37,6 +37,12 @@
                     $('#Physician__ID').text(m.input.record.Data.Physician);
                     $('#Appointment__ID').text(m.input.record.Data.Appointment_Type);
                     $('#Patient_name__ID').text(m.input.record.Data.First_Name+' '+m.input.record.Data.Last_Name);
+                    $('#Sex__ID').text("");
+                    $('#DOB__ID').text("");
+                    $('#Age__ID').text("");
+                    $('#Suburb__ID').text("");
+                    $('#Postcode__ID').text("");
+
                 }
                 request_count=0;
                 max_count;
@@ -74,13 +80,14 @@
             }
             //-----------------------
             var render_page=function(){
+                //console.log(JSON.stringify(total_res[0].result[0].Table))
                 var txt="";
                 txt+="<table style='width:100%; border-size:1px'>";
                 var list=m.input.record.Data.List
                 list=list.split(',');
                 for(var i=0;i<list.length;i++){
-                    if(($vm.module_list[list[i]].Table).includes("contact")){
-                        if(total_res[i].result[0]!=undefined){
+                    if(total_res[i].result[0]!=undefined){
+                        if((total_res[i].result[0].Table).includes("contact")){
                             $('#Patient_name__ID').text(total_res[i].result[0].Data.first_name+' '+total_res[i].result[0].Data.last_name);
                             $('#Sex__ID').text(total_res[i].result[0].Data.sex);
                             $('#DOB__ID').text($vm.yyyymmdd_to_ddmmyyyy(total_res[i].result[0].Data.dob));
@@ -90,26 +97,15 @@
                             $('#Suburb__ID').text(total_res[i].result[0].Data.suburb);
                             $('#Postcode__ID').text(total_res[i].result[0].Data.postcode);
                         }
-                        else{
-                            $('#Sex__ID').text("");
-                            $('#DOB__ID').text("");
-                            $('#Age__ID').text("");
-                            $('#Suburb__ID').text("");
-                            $('#Postcode__ID').text("");
+                        else if((total_res[i].result[0].Table).includes("medicare")){
+                            txt+="<tr><td >Medicare #</td>";
+                            txt+="<td colspan=3'>"+total_res[i].result[0].Data.Medicare_number+"</td></tr>";
                         }
-                    }
-                    else  if(($vm.module_list[list[i]].Table).includes("ess")){
-                        if(total_res[i].result[0]!=undefined){
+                        else if((total_res[i].result[0].Table).includes("ess")){
                             txt+="<tr><td >ESS</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.ESS+"/24</td></tr>";
                         }
-                        else{
-                            txt+="<tr><td >ESS Questionnaire</td>";
-                            txt+="<td colspan=3'>Not answered/21</td></tr>";
-                        }
-                    }
-                    else  if(($vm.module_list[list[i]].Table).includes("psqi")){
-                        if(total_res[i].result[0]!=undefined){
+                        else if((total_res[i].result[0].Table).includes("psqi")){
                             txt+="<tr><td >PSQI Sleep Quality</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.PSQISLPQUAL+"/3</td></tr>";
                             txt+="<tr><td >PSQI Sleep Latency</td>";
@@ -127,35 +123,19 @@
                             txt+="<tr><td >PSQI Global Score</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.PSQI+"/21</td></tr>";
                         }
-                        else{
-                            txt+="<tr><td >PSQI Questionnaire</td>";
-                            txt+="<td colspan=3'>Not answered/21</td></tr>";
-                        }
-                    }
-                    else  if(($vm.module_list[list[i]].Table).includes("hads")){
-                        if(total_res[i].result[0]!=undefined){
+                        else if((total_res[i].result[0].Table).includes("hads")){
                             txt+="<tr><td >HADS DEPRESSION</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.HADS_D+"/21</td></tr>";
                             txt+="<tr><td >HADS ANXIETY</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.HADS_A+"/21</td></tr>";
                         }
-                        else{
-                            txt+="<tr><td >HADS Questionnaire</td>";
-                            txt+="<td colspan=3'>Not answered/21</td></tr>";
-                        }
-                    }
-                    else  if(($vm.module_list[list[i]].Table).includes("dass")){
-                        if(total_res[i].result[0]!=undefined){
+                        else if((total_res[i].result[0].Table).includes("dass")){
                             txt+="<tr><td >DASS DEPRESSION</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.DASS_D+"/42</td></tr>";
                             txt+="<tr><td >DASS ANXIETY</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.DASS_A+"/42</td></tr>";
                             txt+="<tr><td >DASS STRESS</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.DASS_S+"/42</td></tr>";
-                        }
-                        else{
-                            txt+="<tr><td >DASS Questionnaire</td>";
-                            txt+="<td colspan=3'>Not answered/21</td></tr>";
                         }
                     }
                 }

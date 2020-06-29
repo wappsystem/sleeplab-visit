@@ -24,7 +24,7 @@
 
                         td.html(html);
                         td.find('u').on('click',function(){
-                            $vm.load_module_v2('send-email','',{record:records[I],email:'Email',title:'Send Email'})
+                            $vm.load_module_v2('send-email','',{record:records[I],email:'Email',title:'Send Email',goback:1})
                         })
                     break;
                 case 'Reminder':
@@ -40,7 +40,7 @@
 
                     td.html(html);
                     td.find('u').on('click',function(){
-                        $vm.load_module_v2('send-email','',{record:records[I],email:'Reminder',title:'Send Email'})
+                        $vm.load_module_v2('send-email','',{record:records[I],email:'Reminder',title:'Send Email',goback:1})
                     })
                     break;
                     case '_Online_Questionnaires':
@@ -76,14 +76,14 @@
                         jQuery.ajaxSetup({async:true});
                         td.html(html);
                         td.find('u').on('click',function(){
-                            $vm.load_module_v2('q-panel','',{record:records[I]});
+                            $vm.load_module_v2('q-panel','',{record:records[I],goback:1});
                         })
                         break;
                     case '_Summary':
                         html="<u style='cursor:pointer;'>Summary</u>";
                         td.html(html);
                         td.find('u').on('click',function(){
-                            $vm.load_module_v2('summary-print','',{record:records[I]});
+                            $vm.load_module_v2('summary-print','',{record:records[I],goback:1});
                         })
                         break;
             }

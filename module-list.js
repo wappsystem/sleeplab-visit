@@ -22,6 +22,8 @@
         "hads-form": { url: "$H/m/library/hads-form.html", Table: "demo-wapp-hads", task_name:"HADS" },
         "contact-details-data": { url: "$H/m/library/contact-details-data.html", Table: "demo-wapp-contact-details", form_module: "contact-details-form", task_name:"Contact Details" },
         "contact-details-form": { url: "$H/m/library/contact-details-form.html", Table: "demo-wapp-contact-details", task_name:"Contact Details" },
+        "medicare-referrals-data": { url: "$H/m/library/medicare-referrals-data.html", Table: "demo-wapp-medicare-referrals", form_module: "medicare-referrals-form", task_name:"Medicare and Referrals" },
+        "medicare-referrals-form": { url: "$H/m/library/medicare-referrals-form.html", Table: "demo-wapp-medicare-referrals", task_name:"Medicare and Referrals" },
         "send-email":   {url:"$H/m/send-email-form.html",   Table:"demo-wapp-appointment", task_name:"Send Email"},
         "online-questionnaire": {url:"$H/online-questionnaire/index.html"},
         "q-panel": {url:"$H/m/q-panel.html"},
