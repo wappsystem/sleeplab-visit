@@ -41,7 +41,7 @@ m.set_ref = function () {
       $('#week_header_select__ID6').on('click',function(){to_week_day(6);});
       var to_week_day=function(wd){
             var dates=$vm.date_add_days(m.first_day, wd);
-            $vm.load_module("calendar-sleepstudy-day",'',{fromweek:$vm.date_to_yyyymmdd(dates)});
+            $vm.load_module("calendar-appointment-day",'',{fromweek:$vm.date_to_yyyymmdd(dates)});
       }
 }
 m.set_ref();

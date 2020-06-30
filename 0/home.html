@@ -3,13 +3,13 @@
 		<div class="container-fluid" style='max-width:960px'>
 			<div class="text-center panel__ID" style='color:#fff'>
 				<br>
-				<h2>Sleeplab Visit Application</h2>
+				<h2>Sleeplab Appointment Application</h2>
 				<p>
 					<br><br>
-					<a id=get1_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Daily Visits</a>
-					<a id=get2_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Weekly Visits</a>
-					<a id=get3_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Monthy Visits</a>
-					<a id=get4_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >All Visits</a>
+					<a id=get1_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Daily Appointments</a>
+					<a id=get2_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Weekly Appointments</a>
+					<a id=get3_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Monthy Appointments</a>
+					<a id=get4_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >All Appointments</a>
 				</p>
 				<br>
 			</div>
@@ -31,13 +31,13 @@
 	-->
 	<script>
 		$('#get1_in__ID').on('click',function(){
-			$vm.load_module('calendar-visit-day','',{})
+			$vm.load_module('calendar-appointment-day','',{})
 		})
 		$('#get2_in__ID').on('click',function(){
-			$vm.load_module('calendar-visit-week','',{})
+			$vm.load_module('calendar-appointment-week','',{})
 		})
 		$('#get3_in__ID').on('click',function(){
-			$vm.load_module('calendar-visit-month','',{})
+			$vm.load_module('calendar-appointment-month','',{})
 		})
 		$('#get4_in__ID').on('click',function(){
 			$vm.load_module('appointment-data','',{})

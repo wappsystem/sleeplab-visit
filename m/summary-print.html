@@ -8,13 +8,16 @@
                 <br>DOB: <span style='font-weight: bold' id=DOB__ID></span>
                 <br>Age: <span style='font-weight: bold' id=Age__ID></span>
                 <br>Suburb: <span style='font-weight: bold' id=Suburb__ID></span>
-                <br>Postcode: <span style='font-weight: bold' id=Postcode__ID></span>
+                <br>
+                <br>Charge: <span style='font-weight: bold' id=Charge__ID></span>
+                <br>Reason: <span style='font-weight: bold' id=Reason__ID></span>
             </div>
             <div style='float:right;width:40%;'>
                 <br><span style='font-size: 160%'><b></b></span>
                 <br>Visit Date: <span style='font-weight: bold' id=Visit_Date__ID></span>
                 <br>Physician: <span style='font-weight: bold' id=Physician__ID></span>
                 <br>Appointment Type: <span style='font-weight: bold' id=Appointment__ID></span>
+                <br>Referrer: <span style='font-weight: bold' id=Referring_dr__ID></span>
             </div>
         </div>
         <div style='width:100%;float:left;clear:left'><br><br><b>Results:</b></div>
@@ -42,6 +45,9 @@
                     $('#Age__ID').text("");
                     $('#Suburb__ID').text("");
                     $('#Postcode__ID').text("");
+                    $('#Charge__ID').text("");
+                    $('#Reason__ID').text("");
+                    $('#Referring_dr__ID').text("");
 
                 }
                 request_count=0;
@@ -87,7 +93,7 @@
                 list=list.split(',');
                 for(var i=0;i<list.length;i++){
                     if(total_res[i].result[0]!=undefined){
-                        if((total_res[i].result[0].Table).includes("contact")){
+                        if((total_res[i].result[0].Table).includes("-contact")){
                             $('#Patient_name__ID').text(total_res[i].result[0].Data.first_name+' '+total_res[i].result[0].Data.last_name);
                             $('#Sex__ID').text(total_res[i].result[0].Data.sex);
                             $('#DOB__ID').text($vm.yyyymmdd_to_ddmmyyyy(total_res[i].result[0].Data.dob));
@@ -97,15 +103,24 @@
                             $('#Suburb__ID').text(total_res[i].result[0].Data.suburb);
                             $('#Postcode__ID').text(total_res[i].result[0].Data.postcode);
                         }
-                        else if((total_res[i].result[0].Table).includes("medicare")){
-                            txt+="<tr><td >Medicare #</td>";
-                            txt+="<td colspan=3'>"+total_res[i].result[0].Data.Medicare_number+"</td></tr>";
+                        else if((total_res[i].result[0].Table).includes("-medicare")){
+                            $('#Referring_dr__ID').text(total_res[i].result[0].Data.Referring_doctor);
+                            $('#Reason__ID').text(total_res[i].result[0].Data.Reason);
+                            if(total_res[i].result[0].Data.benefits=='Medicare'){
+                                $('#Charge__ID').text(total_res[i].result[0].Data.benefits+' '+total_res[i].result[0].Data.Medicare_number+'-'+total_res[i].result[0].Data.Medicare_reference_number+' '+total_res[i].result[0].Data.Medicare_expiry_mm+'/'+total_res[i].result[0].Data.Medicare_expiry_yy);
+                            }
+                            else if(total_res[i].result[0].Data.benefits=='Department of Veterans Affairs'){
+                                $('#Charge__ID').text(total_res[i].result[0].Data.benefits+' '+total_res[i].result[0].Data.DVA);
+                            }
+                            else if(total_res[i].result[0].Data.benefits=='Self Funded'){
+                                $('#Charge__ID').text(total_res[i].result[0].Data.benefits);
+                            }
                         }
-                        else if((total_res[i].result[0].Table).includes("ess")){
+                        else if((total_res[i].result[0].Table).includes("-ess")){
                             txt+="<tr><td >ESS</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.ESS+"/24</td></tr>";
                         }
-                        else if((total_res[i].result[0].Table).includes("psqi")){
+                        else if((total_res[i].result[0].Table).includes("-psqi")){
                             txt+="<tr><td >PSQI Sleep Quality</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.PSQISLPQUAL+"/3</td></tr>";
                             txt+="<tr><td >PSQI Sleep Latency</td>";
@@ -123,13 +138,13 @@
                             txt+="<tr><td >PSQI Global Score</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.PSQI+"/21</td></tr>";
                         }
-                        else if((total_res[i].result[0].Table).includes("hads")){
+                        else if((total_res[i].result[0].Table).includes("-hads")){
                             txt+="<tr><td >HADS DEPRESSION</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.HADS_D+"/21</td></tr>";
                             txt+="<tr><td >HADS ANXIETY</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.HADS_A+"/21</td></tr>";
                         }
-                        else if((total_res[i].result[0].Table).includes("dass")){
+                        else if((total_res[i].result[0].Table).includes("-dass")){
                             txt+="<tr><td >DASS DEPRESSION</td>";
                             txt+="<td colspan=3'>"+total_res[i].result[0].Data.DASS_D+"/42</td></tr>";
                             txt+="<tr><td >DASS ANXIETY</td>";
@@ -155,13 +170,6 @@
                 return age;
             }
             //-----------------------
-            var formatter = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                minimumFractionDigits: 2,
-            });
-        //-------------------------------------
-
         }
     </script>
     <style>
