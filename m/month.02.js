@@ -84,7 +84,7 @@ m.calendar_render = function (html) {
                         m.on_day_click_fun($vm.date_to_yyyymmdd($(this).data('d')));
                   })
                   $('#' + idb).on('click', function () {
-                        m.on_day_click_fun_booking($vm.date_to_yyyymmdd($(this).data('d')))
+                        m.on_day_click_fun_appointment($vm.date_to_yyyymmdd($(this).data('d')))
                   })
             }
       }
