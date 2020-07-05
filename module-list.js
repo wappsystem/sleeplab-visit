@@ -6,6 +6,7 @@
         "calendar-appointment-week": { url: "$H/m/calendar-appointment-week.html", Table: "demo-wapp-appointment","appointment":"appointment-form"},
         "calendar-appointment-month": { url: "$H/m/calendar-appointment-month.html", Table: "demo-wapp-appointment","appointment":"appointment-form"},
         "calendar-appointment-day": { url: "$H/m/calendar-appointment-day.html", Table: "demo-wapp-appointment","appointment":"appointment-form" },
+        "calendar-appointment-waiting-list": { url: "$H/m/calendar-appointment-waiting-list.html", Table: "demo-wapp-appointment","appointment":"appointment-form","physician":"demo-wapp-local-physician" },
         "physician-data": { url: "$H/m/physician-data.html", Table: "demo-wapp-local-physician", form_module: "physician-form" },
         "physician-form": { url: "$H/m/physician-form.html", Table: "demo-wapp-local-physician" },
         "appointment-type-data": { url: "$H/m/appointment-type-data.html", Table: "demo-wapp-appointment-type", form_module: "appointment-type-form" },

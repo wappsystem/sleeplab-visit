@@ -7,15 +7,18 @@
         //--------------------------------------------------------
         VmInclude:__CURRENT_PATH__/day.01.js
         //--------------------------------------------------------
+        $('#title__ID').text(' Waiting List');
         m.start_point=0*60;
         m.total_width=(36*60-m.start_point);
-        $('#title__ID').text(' Daily Appointments');
     	//--------------------------------------------------------
         m.request_and_render=function(){
             request_count=0;
-            var dt1=$('#date__ID').val();
-            var dt2=$vm.date_to_yyyymmdd($vm.date_add_days($vm.date_today(),m.ref+1));
-            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+            $('#date__ID').val('');
+            var query={I1:""}
+            if($('#toolbar__ID input[name=Physician').val()!=''){
+                query={I1:"","Data.Physician":$('#toolbar__ID input[name=Physician').val()}
+            }
+            $vm.request({cmd:"find",table:m.Table,query:query,sort:{I1:1,I2:1},options:{}},function(res){
                 render_page(res)
             });
         }
@@ -68,7 +71,7 @@
             item+='<div class="card-header p-1">'+name+'</div>'
             item+="<div class='card-body' id=itema__ID"+id+" style='color:"+$vm.whire_or_black_color(color)+";padding:5px;'  >";
             item+="<div style='padding-left:3px; background-color:"+color+";border-radius:3px;padding:3px;' class=item__ID >";
-            item+="<div  >"+time+" - "+item_number+"</div>";
+            item+="<div  >"+item_number+"</div>";
             item+="</div></div></div>"
             //--------------------------------------------------------
             $('#appointment__ID').append(item);

@@ -1,10 +1,18 @@
 <div id=toolbar__ID class="navbar navbar-default" style='margin-bottom:0px;padding-left:6px;'>
     <div class="form-inline">
+        <button id=new__ID  type=button class='btn btn-secondary' title='Add new'><i class="fa fa-plus"></i></button>
         <button type=button class='btn btn-secondary' id=this__ID>Today</button>
         <button type=button class='btn btn-secondary' id=previous__ID><i class="fa fa-arrow-left"></i></button>
         <input type=date class="form-control" id=date__ID style='width:180px;display:inline-block' />
         <button type=button class='btn btn-secondary' id=next__ID><i class="fa fa-arrow-right"></i></button>
         <button type=button class='btn btn-secondary' id=refresh__ID>Refresh</button>
+        <div class="form-group "><div><label><span class="pl-2">Physician</span></label></div>
+            <div class="input-group-sm">
+                <input type="text" class="form-control input-sm" name=Physician 
+                    placeholder="lookup..." />
+            </div>
+        </div>
+        <span class=pl-2 id=title__ID></span>
     </div>
     <span id=elapsed__ID style='float:right'></span>
 </div>
@@ -27,6 +35,16 @@
     }
     #toolbar__ID *{
         margin-right:3px;
+    }
+
+    #toolbar__ID .form-group input[type=text] {
+        font-family: 'Nunito Sans';
+        font-size: 16px;
+        color: #6D6F72;
+    }
+    .ui-widget {
+        font-family: 'Nunito Sans'!important;
+        font-size: 0.8em;
     }
 
     #calendar__ID {

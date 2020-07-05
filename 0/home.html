@@ -9,8 +9,8 @@
 					<a id=get1_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Daily Appointments</a>
 					<a id=get2_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Weekly Appointments</a>
 					<a id=get3_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Monthy Appointments</a>
-					<a id=get4_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >All Appointments</a>
 					<a id=get5_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >Waiting List</a>
+					<a id=get4_in__ID class='btn btn-warning mt-1' style='color:#000;cursor: pointer;' >All Appointments</a>
 				</p>
 				<br>
 			</div>
@@ -44,7 +44,7 @@
 			$vm.load_module('appointment-data','',{})
 		})
 		$('#get5_in__ID').on('click',function(){
-			$vm.load_module('appointment-data','',{I1:'2020-06-27'})
+			$vm.load_module('calendar-appointment-waiting-list','',{})
 		})
 		$('#scroll_down__ID').on('click',function(e){
 			e.preventDefault();
