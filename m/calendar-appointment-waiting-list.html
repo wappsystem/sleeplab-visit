@@ -7,7 +7,7 @@
         //--------------------------------------------------------
         VmInclude:__CURRENT_PATH__/day.01.js
         //--------------------------------------------------------
-        $('#title__ID').text(' Waiting List');
+        $('#title__ID').html(' <b>Waiting List</b>');
         m.start_point=0*60;
         m.total_width=(36*60-m.start_point);
     	//--------------------------------------------------------
@@ -42,11 +42,11 @@
                 return item;
             }
             //--------------------------------------------------------
-            $('#appointment__ID').append(header('Appointment'));
+            $('#appointment__ID').append(header('Appointment Type'));
             $('#physician__ID').append(header('Physician'));
             $('#questionnaire__ID').append(header('Questionnaire Link'));
             $('#email__ID').append(header('Email'));
-            $('#answers__ID').append(header('Answers'));
+            $('#answers__ID').append(header('Questionnaires'));
             $('#summary__ID').append(header('Summary'));
             //--------------------------------------------------------
             for(var i=0;i<res.result.length;i++){
