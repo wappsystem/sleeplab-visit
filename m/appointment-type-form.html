@@ -43,7 +43,7 @@
 											<div class="col-lg-12 col-sm-12">
 												<div><label><span class="">Questionnaire for appointment</span></label></div>
 												<div class="input-group-sm ">
-													<input type="text" class="form-control" name=questionnaires placeholder="lookup..." />
+													<input type="text" class="form-control" id=questionnaires__ID placeholder="lookup..." />
 													<label><span><u style='cursor:pointer;margin-bottom:3px;display:inline-block' id=item_a_add__ID><i class="fa fa-plus"></i> Add to list</u></span></label>
 												</div>
 											</div>
@@ -96,7 +96,7 @@
 			//item a part
 			m.item_a_fields = "Questionnaire,Module_link,_Remove";
 			//----------------------------------
-			$('#item_a_add__ID').on('click', function () { m.item_a_render(); $('input[name=questionnaires').val(""); })
+			$('#item_a_add__ID').on('click', function () { m.item_a_render(); $('#questionnaires__ID').val(""); })
 			//----------------------------------
 			m.item_a_cell_render = function (records, I, field, td, set_value, source) {
 				switch (field) {
@@ -113,7 +113,7 @@
 			//-------------------------------------
 			var autocomplete_req = { cmd: "find", field: '.Data.Questionnaire', table: m.lookup, options: {}, skip: 0, limit: 10 }
 			var autocomplete_callback = function (item) {
-				$('input[name=questionnaires').val(item.label);
+				$('#questionnaires__ID').val(item.label);
 				console.log(JSON.stringify(item))
 				var ttt = {}
 				ttt.Questionnaire = item.label;
@@ -132,7 +132,7 @@
 				return items;
 			}
 			var wait5 = function () {
-				$vm.autocomplete($('#F__ID input[name=questionnaires'), autocomplete_req, autocomplete_list, autocomplete_callback);
+				$vm.autocomplete($('#questionnaires__ID'), autocomplete_req, autocomplete_list, autocomplete_callback);
 			}
 			var I5 = 0; var loop_5 = setInterval(function () {
 				if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_5); wait5(); }
