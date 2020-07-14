@@ -27,7 +27,7 @@ m.request_and_render=function(){};
 //---------------------------------------------
 var autocomplete_req = { cmd: "find", field: '.Data.Name', table: m.physician, options: {}, skip: 0, limit: 10 }
 var autocomplete_callback = function (item) {
-    $('input[name=Physician').val(item.label);
+    $('#Physician_search__ID').val(item.label);
 }
 var autocomplete_list = function (records) {
     var items = [];
@@ -44,7 +44,7 @@ var autocomplete_list = function (records) {
     return items;
 }
 var wait1 = function () {
-    $vm.autocomplete($('#toolbar__ID input[name=Physician'), autocomplete_req, autocomplete_list, autocomplete_callback);
+    $vm.autocomplete($('#Physician_search__ID'), autocomplete_req, autocomplete_list, autocomplete_callback);
 }
 var I = 0; var loop_1 = setInterval(function () {
     if ($vm['jquery-ui-min-js'] != undefined) { clearInterval(loop_1); wait1(); }

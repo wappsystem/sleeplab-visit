@@ -15,7 +15,12 @@
             request_count=0;
             var dt1=$('#date__ID').val();
             var dt2=$vm.date_to_yyyymmdd($vm.date_add_days($vm.date_today(),m.ref+1));
-            $vm.request({cmd:"find",table:m.Table,query:{I1:{"$gte":dt1,"$lt":dt2}},sort:{I1:1,I2:1},options:{}},function(res){
+            var new_query={I1:{"$gte":dt1,"$lt":dt2}}
+            console.log($('#Physician_search__ID').val())
+            if($('#Physician_search__ID').val()!=""){
+                new_query={I1:{"$gte":dt1,"$lt":dt2},"Data.Physician":$('#Physician_search__ID').val()}
+            }
+            $vm.request({cmd:"find",table:m.Table,query:new_query,sort:{I1:1,I2:1},options:{}},function(res){
                 render_page(res)
             });
         }
