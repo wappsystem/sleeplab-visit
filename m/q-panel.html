@@ -63,7 +63,7 @@
 			$('#items__ID li').each(function(){
 		        var $li=$(this);
 				var m=$li.attr('m');
-				jQuery.ajaxSetup({async:false});
+//				jQuery.ajaxSetup({async:false});
 				$vm.request({cmd:"find",table:$vm.module_list[m].Table,query:{I3:($vm.vm['__ID'].input.record.UID).toString()},options:{}},function(res){
 					console.log(JSON.stringify(res))
 					var task_name=$li.html();

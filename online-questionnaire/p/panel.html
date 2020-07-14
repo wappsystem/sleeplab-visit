@@ -92,7 +92,7 @@
 		            $li.find('u').on('click',function(){
 		                var m=$(this).attr('m');
                         var record=$vm.vm['__ID'].input.record;
-						$vm.load_module(m,'',{participant_record:record,goback:1});
+						$vm.load_module(m,'',{participant_record:record,q_form:m,goback:1});
 		            });
 		            return false; // break out the loop
 		        }

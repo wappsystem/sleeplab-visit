@@ -36,6 +36,8 @@ m.load=function(){
         $('#pdf__ID').hide();
         $('#participant_div__ID').hide();
         $('#questionnaire_status__ID').hide();
+        //console.log(JSON.stringify(m.input))
+        console.log(m.input.q_form)
     }
 //--------------------------
     if(m.input!=undefined && m.input.participant_record!=undefined){
